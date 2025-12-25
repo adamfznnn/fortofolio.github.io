@@ -417,6 +417,19 @@ input:focus, textarea:focus {
 .cv-download-box:hover {
     transform: scale(1.03);
 }
+/* ================EMAIL===================== */
+#sendBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#sendBtn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
 
 /* ================= SECTION OFFSET ================= */
 section {
