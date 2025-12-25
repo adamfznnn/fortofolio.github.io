@@ -113,25 +113,49 @@ if (certModal) {
   emailjs.init("DNLd1r1cbVjAJarct"); // Public Key
 })();
 
-const contactForm = document.getElementById("contact-form");
+const form = document.getElementById("contact-form");
+const sendBtn = document.getElementById("sendBtn");
+const btnText = document.getElementById("btn-text");
+const btnLoader = document.getElementById("btn-loader");
+const successPopup = document.getElementById("successPopup");
 
-if (contactForm) {
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "#1234#567#",       // Service ID
-        "template_f50zlks", // Template ID
-        this
-      )
-      .then(() => {
-        alert("Pesan berhasil dikirim!");
-        this.reset();
-      })
-      .catch(error => {
-        alert("Gagal mengirim pesan");
-        console.error(error);
-      });
-  });
+// Popup functions
+function showPopup() {
+  successPopup.style.display = "flex";
 }
+
+function closePopup() {
+  successPopup.style.display = "none";
+}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Loader ON
+  sendBtn.disabled = true;
+  btnText.textContent = "Mengirim...";
+  btnLoader.classList.remove("d-none");
+
+  emailjs
+    .sendForm(
+      "#1234#567#",      // ❗ WAJIB DIGANTI
+      "template_f50zlks",
+      this
+    )
+    .then(() => {
+      showPopup();   // 🔥 POPUP MUNCUL
+      form.reset();
+    })
+    .catch(error => {
+      alert("Pesan gagal dikirim 😥");
+      console.error("EmailJS Error:", error);
+    })
+    .finally(() => {
+      // Loader OFF
+      sendBtn.disabled = false;
+      btnText.textContent = "Kirim";
+      btnLoader.classList.add("d-none");
+    });
+});
+
+

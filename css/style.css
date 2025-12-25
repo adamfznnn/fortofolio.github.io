@@ -436,6 +436,91 @@ section {
     scroll-margin-top: 110px;
 }
 
+/* ================= POPUP MESSAGE ================= */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.popup-box {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  animation: popupScale 0.35s ease;
+}
+
+@keyframes popupScale {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.popup-box i {
+  font-size: 55px;
+  margin-bottom: 12px;
+}
+
+/* SUCCESS */
+.popup-box.success i {
+  color: #28a745;
+}
+
+/* ERROR */
+.popup-box.error i {
+  color: #dc3545;
+}
+
+.popup-box h4 {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.popup-box p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.popup-box button {
+  border: none;
+  background: #0d6efd;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popup-box button:hover {
+  background: #084298;
+}
+
+/* DARK MODE SUPPORT */
+body.dark .popup-box {
+  background: #1a1a1a;
+  color: #eee;
+}
+
+body.dark .popup-box p {
+  color: #bbb;
+}
+
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
     .profile-img {
